@@ -36,17 +36,10 @@
 <script>
 export default {
   name: "EventsList",
-  data: () => ({
-    events: [],
-  }),
-  created() {
-    this.getEvents();
-  },
-  methods: {
-    getEvents() {
-      this.$axios("/event")
-        .then(({ data }) => (this.events = data))
-        .catch(console.error);
+  props: {
+    events: {
+      type: Array,
+      required: true,
     },
   },
 };

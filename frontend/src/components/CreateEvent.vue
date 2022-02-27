@@ -79,7 +79,7 @@ export default {
 
       this.$axios
         .post("/event", this.form)
-        .then(console.log)
+        .then(() => this.$emit("refresh"))
         .catch(console.error);
     },
   },

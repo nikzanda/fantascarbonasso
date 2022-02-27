@@ -5,13 +5,13 @@
       <v-row align="center" justify="center">
         <v-col xl="6" lg="6" md="12">
           <h2>Inserisci evento</h2>
-          <CreateEvent />
+          <CreateEvent @refresh="getEvents" />
         </v-col>
       </v-row>
       <br />
       <v-divider></v-divider>
       <br />
-      <EventsList />
+      <EventsList :events="events" />
     </v-main>
   </v-app>
 </template>
@@ -25,6 +25,19 @@ export default {
   components: {
     CreateEvent,
     EventsList,
+  },
+  data: () => ({
+    events: [],
+  }),
+  created() {
+    this.getEvents();
+  },
+  methods: {
+    getEvents() {
+      this.$axios("/event")
+        .then(({ data }) => (this.events = data))
+        .catch(console.error);
+    },
   },
 };
 </script>
