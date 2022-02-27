@@ -11,8 +11,6 @@ Vue.prototype.$axios = axios.create({
   baseURL: process.env.VUE_APP_API_BASE_URL,
 });
 
-console.warn(process.env.VUE_APP_API_BASE_URL);
-
 new Vue({
   vuetify,
   render: (h) => h(App),
