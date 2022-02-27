@@ -16,7 +16,7 @@ class Event extends Model
     ];
 
     /**
-     * Get the color that owns the cartridge.
+     * Get the team that owns the event.
      */
     public function team()
     {
@@ -24,7 +24,7 @@ class Event extends Model
     }
 
     /**
-     * Get the color that owns the cartridge.
+     * Get the category that owns the event.
      */
     public function category()
     {

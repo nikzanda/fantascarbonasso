@@ -14,7 +14,7 @@ class Team extends Model
     ];
 
     /**
-     * Get all of the copies for the format.
+     * Get all of the events for the format.
      */
     public function events()
     {
