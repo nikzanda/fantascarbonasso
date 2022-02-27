@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'team'], function () {
-    Route::get('', [TeamController::class], 'index');
-    Route::get('/{team}', [TeamController::class], 'show');
+    Route::get('', [TeamController::class, 'index']);
+    Route::get('/{team}', [TeamController::class, 'show']);
 });
 
 Route::group(['prefix' => 'category'], function () {
-    Route::get('', [TeamController::class], 'index');
-    Route::get('/{category}', [TeamController::class], 'show');
+    Route::get('', [TeamController::class, 'index']);
+    Route::get('/{category}', [TeamController::class, 'show']);
 });
