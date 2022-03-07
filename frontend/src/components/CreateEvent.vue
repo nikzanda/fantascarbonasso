@@ -1,50 +1,64 @@
 <template>
-  <v-card class="mx-auto">
-    <v-form v-model="valid" ref="form">
+  <v-dialog v-model="dialog" max-width="500" persistent>
+    <v-card class="mx-auto">
+      <v-card-title>
+        <h4>Inserisci evento</h4>
+      </v-card-title>
+
       <v-card-text>
-        <!-- Team -->
-        <v-autocomplete
-          v-model="form.team_id"
-          :items="teams"
-          :rules="[(v) => !!v || 'Team obbligatorio']"
-          label="Team"
-          item-text="name"
-          item-value="id"
-          required
-        />
+        <v-form v-model="valid" ref="form">
+          <v-card-text>
+            <!-- Team -->
+            <v-autocomplete
+              v-model="form.team_id"
+              :items="teams"
+              :rules="[(v) => !!v || 'Team obbligatorio']"
+              label="Team"
+              item-text="name"
+              item-value="id"
+              required
+            />
 
-        <!-- Category -->
-        <v-autocomplete
-          v-model="form.category_id"
-          :items="categories"
-          :rules="[(v) => !!v || 'Categoria obbligatoria']"
-          label="Categoria"
-          item-text="description"
-          item-value="id"
-          required
-        />
+            <!-- Category -->
+            <v-autocomplete
+              v-model="form.category_id"
+              :items="categories"
+              :rules="[(v) => !!v || 'Categoria obbligatoria']"
+              label="Categoria"
+              item-text="description"
+              item-value="id"
+              required
+            />
 
-        <!-- Created by Team Leader -->
-        <v-checkbox
-          v-model="form.created_by_leader"
-          label="Creato dal Team Leader"
-        />
+            <!-- Created by Team Leader -->
+            <v-checkbox
+              v-model="form.created_by_leader"
+              label="Creato dal Team Leader"
+            />
+          </v-card-text>
+        </v-form>
       </v-card-text>
 
       <v-card-actions>
-        <v-btn :disabled="!valid" color="success" class="mr-4" @click="submit">
+        <v-spacer />
+        <v-btn color="error" class="mr-4" @click="close" text> Chiudi </v-btn>
+        <v-btn :disabled="!valid" color="success" @click="submit" text>
           Invia
         </v-btn>
-
-        <v-btn color="error" class="mr-4" @click="reset"> Annulla </v-btn>
       </v-card-actions>
-    </v-form>
-  </v-card>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>
 export default {
   name: "CreateEvent",
+  props: {
+    dialog: {
+      type: Boolean,
+      required: true,
+    },
+  },
   data: () => ({
     teams: [],
     categories: [],
@@ -70,8 +84,9 @@ export default {
         .then(({ data }) => (this.categories = data))
         .catch(console.error);
     },
-    reset() {
+    close() {
       this.$refs.form.reset();
+      this.$emit("close");
     },
     submit() {
       if (!this.$refs.form.validate()) return;
