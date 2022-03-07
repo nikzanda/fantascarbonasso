@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <h1>FANTASCARBONASSO</h1>
+      <h1 class="text-center">FANTASCARBONASSO</h1>
       <v-row align="center" justify="center">
         <v-col xl="6" lg="6" md="12">
           <h2>Inserisci evento</h2>

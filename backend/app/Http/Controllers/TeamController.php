@@ -27,4 +27,12 @@ class TeamController extends Controller
     {
         return $team;
     }
+
+    public function getPoints()
+    {
+        $teams = Team::all();
+
+        foreach ($teams as $team) {
+        }
+    }
 }

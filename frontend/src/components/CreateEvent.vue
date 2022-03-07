@@ -11,8 +11,7 @@
           item-text="name"
           item-value="id"
           required
-        >
-        </v-autocomplete>
+        />
 
         <!-- Category -->
         <v-autocomplete
