@@ -1,4 +1,4 @@
-export const namespaces = true;
+export const namespaced = true;
 
 export const state = {
   events: [],

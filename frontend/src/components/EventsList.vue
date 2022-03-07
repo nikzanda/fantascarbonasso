@@ -34,13 +34,14 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+
 export default {
   name: "EventsList",
-  props: {
-    events: {
-      type: Array,
-      required: true,
-    },
+  computed: mapState("event", ["events"]),
+  created() {
+    this.getEvents();
   },
+  methods: mapActions("event", ["getEvents"]),
 };
 </script>

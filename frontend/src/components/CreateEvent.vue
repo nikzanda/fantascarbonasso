@@ -51,6 +51,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "CreateEvent",
   props: {
@@ -74,6 +76,7 @@ export default {
     this.getCategories();
   },
   methods: {
+    ...mapActions("event", ["createEvent"]),
     getTeams() {
       this.$axios("/team")
         .then(({ data }) => (this.teams = data))
@@ -91,9 +94,8 @@ export default {
     submit() {
       if (!this.$refs.form.validate()) return;
 
-      this.$axios
-        .post("/event", this.form)
-        .then(() => this.$emit("refresh"))
+      this.createEvent(this.form)
+        .then(() => this.$emit("close"))
         .catch(console.error);
     },
   },

@@ -5,7 +5,7 @@
       <v-container fluid>
         <CreateEvent :dialog="dialog" @close="dialog = false" />
 
-        <EventsList :events="events" />
+        <EventsList />
 
         <v-speed-dial
           v-model="speedDial"
@@ -46,19 +46,8 @@ export default {
     EventsList,
   },
   data: () => ({
-    events: [],
     speedDial: false,
     dialog: false,
   }),
-  created() {
-    this.getEvents();
-  },
-  methods: {
-    getEvents() {
-      this.$axios("/event")
-        .then(({ data }) => (this.events = data))
-        .catch(console.error);
-    },
-  },
 };
 </script>
