@@ -5,6 +5,9 @@
       <v-container fluid>
         <CreateEvent :dialog="dialog" @close="dialog = false" />
 
+        <v-btn @click="getPoints">test</v-btn>
+        {{ points }}
+
         <EventsList />
 
         <v-speed-dial
@@ -48,6 +51,14 @@ export default {
   data: () => ({
     speedDial: false,
     dialog: false,
+    points: undefined,
   }),
+  methods: {
+    getPoints() {
+      this.$axios("/team/points")
+        .then(({ data }) => (this.points = data))
+        .catch(console.error);
+    },
+  },
 };
 </script>

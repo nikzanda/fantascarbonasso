@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'team'], function () {
     Route::get('', [TeamController::class, 'index']);
     Route::get('/{team}', [TeamController::class, 'show']);
+    Route::get('/points', [TeamController::class, 'getPoints']);
 });
 
 Route::group(['prefix' => 'category'], function () {
