@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/team/points', [TeamController::class, 'getPoints']); // all'interno del group ritorna 404 NOT FOUND
+
 Route::group(['prefix' => 'team'], function () {
     Route::get('', [TeamController::class, 'index']);
     Route::get('/{team}', [TeamController::class, 'show']);
+    // Route::get('/points', [TeamController::class, 'getPoints']);
 });
 
 Route::group(['prefix' => 'category'], function () {
