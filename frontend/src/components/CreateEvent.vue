@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "CreateEvent",
@@ -62,7 +62,6 @@ export default {
     },
   },
   data: () => ({
-    teams: [],
     categories: [],
     valid: false,
     form: {
@@ -71,17 +70,12 @@ export default {
       created_by_leader: false,
     },
   }),
+  computed: mapState("team", ["teams"]),
   created() {
-    this.getTeams();
     this.getCategories();
   },
   methods: {
     ...mapActions("event", ["createEvent"]),
-    getTeams() {
-      this.$axios("/team")
-        .then(({ data }) => (this.teams = data))
-        .catch(console.error);
-    },
     getCategories() {
       this.$axios("/category")
         .then(({ data }) => (this.categories = data))

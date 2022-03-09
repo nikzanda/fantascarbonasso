@@ -34,14 +34,10 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: "EventsList",
   computed: mapState("event", ["events"]),
-  created() {
-    this.getEvents();
-  },
-  methods: mapActions("event", ["getEvents"]),
 };
 </script>

@@ -15,5 +15,9 @@ Vue.prototype.$axios = axios.create({
 new Vue({
   vuetify,
   store,
+  created() {
+    this.$store.dispatch("team/getTeams");
+    this.$store.dispatch("event/getEvents");
+  },
   render: (h) => h(App),
 }).$mount("#app");
