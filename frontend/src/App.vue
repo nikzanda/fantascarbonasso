@@ -5,6 +5,7 @@
       <v-container fluid>
         <CreateEvent :dialog="dialog" @close="dialog = false" />
 
+        <TeamsList />
         <EventsList />
 
         <v-speed-dial
@@ -37,12 +38,14 @@
 
 <script>
 import CreateEvent from "./components/CreateEvent";
+import TeamsList from "./components/TeamsList";
 import EventsList from "./components/EventsList";
 
 export default {
   name: "App",
   components: {
     CreateEvent,
+    TeamsList,
     EventsList,
   },
   data: () => ({

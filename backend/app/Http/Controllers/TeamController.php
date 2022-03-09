@@ -16,7 +16,7 @@ class TeamController extends Controller
     public function index()
     {
         $teams = DB::table('teams AS t')
-            ->select('t.*', DB::raw('IFNULL(SUM(c.points * (CASE WHEN c.is_bonus = 1 THEN 1 ELSE -1 END) * (CASE WHEN e.created_by_leader = 1 THEN 2 ELSE 1 END)), 0) AS total_points'))
+            ->select('t.*', DB::raw('IFNULL(SUM(c.points * (CASE WHEN c.is_bonus = 1 THEN 1 ELSE -1 END) * (CASE WHEN e.created_by_leader = 1 THEN 2 ELSE 1 END)), 0) AS points'))
             ->leftJoin('events AS e', 't.id', '=', 'e.team_id')
             ->leftJoin('categories AS c', 'c.id', '=', 'e.category_id')
             ->groupBy(['t.id', 't.name'])
