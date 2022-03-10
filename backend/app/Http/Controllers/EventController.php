@@ -44,6 +44,7 @@ class EventController extends Controller
         ]);
 
         $event = Event::create($request->all());
+        $event->load('team', 'category');
 
         return response()->json($event, Response::HTTP_CREATED);
     }

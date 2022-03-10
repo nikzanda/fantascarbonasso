@@ -6,7 +6,7 @@
       </v-card-title>
 
       <v-card-text>
-        <v-form v-model="valid" ref="form">
+        <v-form v-model="valid" ref="form" :disabled="loading">
           <v-card-text>
             <!-- Team -->
             <v-autocomplete
@@ -42,7 +42,13 @@
       <v-card-actions>
         <v-spacer />
         <v-btn color="error" class="mr-4" @click="close" text> Chiudi </v-btn>
-        <v-btn :disabled="!valid" color="success" @click="submit" text>
+        <v-btn
+          :disabled="!valid"
+          color="success"
+          @click="submit"
+          text
+          :loading="loading"
+        >
           Invia
         </v-btn>
       </v-card-actions>
@@ -64,6 +70,7 @@ export default {
   data: () => ({
     categories: [],
     valid: false,
+    loading: false,
     form: {
       team_id: undefined,
       category_id: undefined,
@@ -88,9 +95,11 @@ export default {
     submit() {
       if (!this.$refs.form.validate()) return;
 
+      this.loading = true;
       this.createEvent(this.form)
         .then(() => this.$emit("close"))
-        .catch(console.error);
+        .catch(console.error)
+        .finally(() => (this.loading = false));
     },
   },
 };
