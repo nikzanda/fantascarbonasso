@@ -2,7 +2,8 @@
   <div class="text-center">
     <v-chip v-for="team in teams" :key="team.id" class="ml-2">
       <v-icon v-if="team.showCrown" left color="orange">mdi-crown</v-icon>
-      {{ team.name }} - {{ team.points }}
+      {{ team.name }}
+      <v-avatar right class="green"> {{ team.points }} </v-avatar>
     </v-chip>
   </div>
 </template>
