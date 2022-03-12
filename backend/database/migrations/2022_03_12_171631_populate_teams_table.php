@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
-class PopulateTeamsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -41,6 +41,6 @@ class PopulateTeamsTable extends Migration
      */
     public function down()
     {
-        DB::table('teams')->truncate();
+        DB::table('teams')->delete();
     }
-}
+};
