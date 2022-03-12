@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
-class PopulateCategoriesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -119,6 +119,16 @@ class PopulateCategoriesTable extends Migration
                 'is_bonus' => true
             ],
             [
+                'description' => 'Il prof in squadra manda frecciatine',
+                'points' => 50,
+                'is_bonus' => true
+            ],
+            [
+                'description' => 'Il prof in squadra parla di esperienze personali',
+                'points' => 30,
+                'is_bonus' => true
+            ],
+            [
                 'description' => 'Uscire ultima dalla classe',
                 'points' => 1,
                 'is_bonus' => false
@@ -193,6 +203,11 @@ class PopulateCategoriesTable extends Migration
                 'points' => 2,
                 'is_bonus' => false
             ],
+            [
+                'description' => 'Il prof in squadra indossa più di 4 colori',
+                'points' => 10,
+                'is_bonus' => false
+            ]
         ]);
     }
 
@@ -203,6 +218,6 @@ class PopulateCategoriesTable extends Migration
      */
     public function down()
     {
-        DB::table('categories')->truncate();
+        DB::table('categories')->delete();
     }
-}
+};

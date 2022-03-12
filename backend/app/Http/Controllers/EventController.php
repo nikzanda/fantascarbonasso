@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Event;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class EventController extends Controller
