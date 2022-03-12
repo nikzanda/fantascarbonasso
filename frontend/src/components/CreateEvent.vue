@@ -97,7 +97,14 @@ export default {
 
       this.loading = true;
       this.createEvent(this.form)
-        .then(() => this.$emit("close"))
+        .then(() => {
+          this.form = {
+            team_id: undefined,
+            category_id: undefined,
+            created_by_leader: false,
+          };
+          this.$emit("close");
+        })
         .catch(console.error)
         .finally(() => (this.loading = false));
     },
