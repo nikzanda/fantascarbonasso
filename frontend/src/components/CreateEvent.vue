@@ -28,7 +28,16 @@
               item-text="description"
               item-value="id"
               required
-            />
+            >
+              <template v-slot:item="{ item }">
+                <span v-if="item.is_bonus" style="color: green">
+                  + {{ item.points }}
+                </span>
+                <span v-else style="color: red"> - {{ item.points }} </span>
+
+                <span class="ml-2">{{ item.description }}</span>
+              </template>
+            </v-autocomplete>
 
             <!-- Created by Team Leader -->
             <v-checkbox
@@ -103,6 +112,7 @@ export default {
             category_id: undefined,
             created_by_leader: false,
           };
+          this.$refs.form.reset();
           this.$emit("close");
         })
         .catch(console.error)

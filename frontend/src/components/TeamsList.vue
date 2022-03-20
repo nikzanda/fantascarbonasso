@@ -1,11 +1,24 @@
 <template>
-  <div class="text-center">
-    <v-chip v-for="team in teams" :key="team.id" class="ml-2">
-      <v-icon v-if="team.showCrown" left color="orange">mdi-crown</v-icon>
-      {{ team.name }}
-      <v-avatar right class="green"> {{ team.points }} </v-avatar>
-    </v-chip>
-  </div>
+  <v-row>
+    <v-card
+      v-for="team in teams"
+      :key="team.id"
+      class="mx-auto my-3"
+      min-width="10%"
+    >
+      <v-card-title>
+        <v-avatar right :class="team.points >= 0 ? 'green' : 'red'">
+          {{ team.name.charAt(0) }}
+        </v-avatar>
+        <p class="ml-3">{{ team.name }}</p>
+      </v-card-title>
+
+      <v-card-text class="text-center">
+        <v-icon v-if="team.showCrown" left color="orange">mdi-crown</v-icon>
+        <span>{{ team.points }}</span>
+      </v-card-text>
+    </v-card>
+  </v-row>
 </template>
 
 <script>
